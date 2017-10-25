@@ -21,4 +21,4 @@ Aplikacja Webowa do zarzadzania dietą.
 - Asp.Net MVC 5 - obsługa zapytań http, wyświetlanie widoków.
 - Entity Framework - komunikacja z bazą danych.
 - Ninject - wstrzykiwanie zależności do kontrolerów, kontrola przepływu danych w aplikacji.
-(*) NUnit - testy jednostkowe aplikacji.
+- (*) NUnit - testy jednostkowe aplikacji.
