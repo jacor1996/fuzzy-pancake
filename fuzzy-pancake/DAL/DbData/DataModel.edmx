@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="fuzzy_pancake_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Meals">
+          <Key>
+            <PropertyRef Name="MealId" />
+          </Key>
+          <Property Name="MealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="128" Nullable="false" />
+          <Property Name="Calories" Type="float" Nullable="false" />
+          <Property Name="Fats" Type="float" Nullable="false" />
+          <Property Name="Carbohydrates" Type="float" Nullable="false" />
+          <Property Name="Protein" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Meals">
+          <Key>
+            <PropertyRef Name="UserMealId" />
+          </Key>
+          <Property Name="UserMealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MealNumber" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="MealId" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="128" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Height" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MealUserMeals">
+          <End Role="Meals" Type="Self.Meals" Multiplicity="0..1" />
+          <End Role="User_Meals" Type="Self.User_Meals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="MealId" />
+            </Principal>
+            <Dependent Role="User_Meals">
+              <PropertyRef Name="MealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserUserMeals">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="User_Meals" Type="Self.User_Meals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_Meals">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fuzzy_pancake_DBModelStoreContainer">
+          <EntitySet Name="Meals" EntityType="Self.Meals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Meals" EntityType="Self.User_Meals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MealUserMeals" Association="Self.FK_MealUserMeals">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="User_Meals" EntitySet="User_Meals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserUserMeals" Association="Self.FK_UserUserMeals">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Meals" EntitySet="User_Meals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fuzzy_pancake_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Meal">
+          <Key>
+            <PropertyRef Name="MealId" />
+          </Key>
+          <Property Name="MealId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Calories" Type="Double" Nullable="false" />
+          <Property Name="Fats" Type="Double" Nullable="false" />
+          <Property Name="Carbohydrates" Type="Double" Nullable="false" />
+          <Property Name="Protein" Type="Double" Nullable="false" />
+          <NavigationProperty Name="User_Meals" Relationship="Self.FK_MealUserMeals" FromRole="Meals" ToRole="User_Meals" />
+        </EntityType>
+        <EntityType Name="User_Meals">
+          <Key>
+            <PropertyRef Name="UserMealId" />
+          </Key>
+          <Property Name="UserMealId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MealNumber" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="MealId" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Meal" Relationship="Self.FK_MealUserMeals" FromRole="User_Meals" ToRole="Meals" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserUserMeals" FromRole="User_Meals" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Height" Type="Double" Nullable="false" />
+          <NavigationProperty Name="User_Meals" Relationship="Self.FK_UserUserMeals" FromRole="Users" ToRole="User_Meals" />
+        </EntityType>
+        <Association Name="FK_MealUserMeals">
+          <End Role="Meals" Type="Self.Meal" Multiplicity="0..1" />
+          <End Role="User_Meals" Type="Self.User_Meals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="MealId" />
+            </Principal>
+            <Dependent Role="User_Meals">
+              <PropertyRef Name="MealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserUserMeals">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User_Meals" Type="Self.User_Meals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_Meals">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Meals" EntityType="Self.Meal" />
+          <EntitySet Name="User_Meals" EntityType="Self.User_Meals" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_MealUserMeals" Association="Self.FK_MealUserMeals">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="User_Meals" EntitySet="User_Meals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserUserMeals" Association="Self.FK_UserUserMeals">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Meals" EntitySet="User_Meals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fuzzy_pancake_DBModelStoreContainer" CdmEntityContainer="DataContext">
+          <EntitySetMapping Name="Meals">
+            <EntityTypeMapping TypeName="fuzzy_pancake_DBModel.Meal">
+              <MappingFragment StoreEntitySet="Meals">
+                <ScalarProperty Name="MealId" ColumnName="MealId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Calories" ColumnName="Calories" />
+                <ScalarProperty Name="Fats" ColumnName="Fats" />
+                <ScalarProperty Name="Carbohydrates" ColumnName="Carbohydrates" />
+                <ScalarProperty Name="Protein" ColumnName="Protein" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Meals">
+            <EntityTypeMapping TypeName="fuzzy_pancake_DBModel.User_Meals">
+              <MappingFragment StoreEntitySet="User_Meals">
+                <ScalarProperty Name="UserMealId" ColumnName="UserMealId" />
+                <ScalarProperty Name="MealNumber" ColumnName="MealNumber" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MealId" ColumnName="MealId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="fuzzy_pancake_DBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -8,6 +8,9 @@ namespace DAL
 {
     interface IDataRepository
     {
-        IQueryable GetData();
+        IQueryable GetMeals();
+        IQueryable GetUsers();
+        //Get UserMeals for selected day
+        IQueryable GetUserMeals();
     }
 }
