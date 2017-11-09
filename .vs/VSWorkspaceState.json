@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\fuzzy-pancake",
+    "\\fuzzy-pancake\\DAL",
+    "\\fuzzy-pancake\\DAL\\Concrete",
+    "\\fuzzy-pancake\\WebApplication"
   ],
+  "SelectedNode": "\\fuzzy-pancake\\fuzzy-pancake.sln",
   "PreviewInSolutionExplorer": false
 }
