@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
+using DAL;
 
 namespace WebApplication.Infrastructure
 {
@@ -19,7 +20,7 @@ namespace WebApplication.Infrastructure
 
         private void AddBindings()
         {
-            throw new NotImplementedException();
+            kernel.Bind<DAL.Abstract.IDataRepository>().To<DAL.Concrete.DataRepository>();
         }
 
         public object GetService(Type serviceType)
