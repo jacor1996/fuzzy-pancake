@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Abstract;
@@ -27,7 +28,7 @@ namespace DAL.Concrete
         public bool AddMeal(Meal meal)
         {
             bool isSuccessful = false;
-            if (!db.Meals.Contains(meal))
+            if (db.Meals.FirstOrDefault(x => x.Name == meal.Name) == null)
             {
                 db.Meals.Add(meal);
                 db.SaveChanges();

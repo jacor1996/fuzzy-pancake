@@ -25,11 +25,26 @@ namespace WebApplication.Controllers
             return View(data);
         }
 
-        
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Meal meal)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.AddMeal(meal);
+                return RedirectToAction("Index");
+            }
+            return View(meal);
+        }
+
         public ActionResult Details(int id)
         {
             Meal meal = repository.FindMeal(id);
-
+          
             if (meal == null)
             {
                 //Add message that specified meal doesn't exist or redirect to index

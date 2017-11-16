@@ -13,16 +13,20 @@ namespace DAL.DataModel
 
         public int MealId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter meal name.")]
         [StringLength(128)]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Enter amount of calories per 100 grams of product.")]
         public double Calories { get; set; }
 
+        [Required(ErrorMessage = "Enter amount of fats per 100 grams of product.")]
         public double Fats { get; set; }
 
+        [Required(ErrorMessage = "Enter amount of carbohydrates per 100 grams of product.")]
         public double Carbohydrates { get; set; }
 
+        [Required(ErrorMessage = "Enter amount of protein per 100 grams of product.")]
         public double Protein { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
