@@ -16,5 +16,25 @@ namespace DAL.Concrete
         {
             return db.Meals;
         }
+
+        public Meal FindMeal(int id)
+        {
+            //Can be null, check in controller
+            Meal meal = db.Meals.FirstOrDefault(x => x.MealId == id);
+            return meal;
+        }
+
+        public bool AddMeal(Meal meal)
+        {
+            bool isSuccessful = false;
+            if (!db.Meals.Contains(meal))
+            {
+                db.Meals.Add(meal);
+                db.SaveChanges();
+                isSuccessful = true;
+            }
+            return isSuccessful;
+        }
+
     }
 }

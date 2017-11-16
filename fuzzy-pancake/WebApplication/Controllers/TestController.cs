@@ -22,5 +22,11 @@ namespace WebApplication.Controllers
         {
             return View(repo.GetMeals());
         }
+
+        public ActionResult Details(int id)
+        {
+            Meal meal = repo.FindMeal(id);
+            return View(meal);
+        }
     }
 }

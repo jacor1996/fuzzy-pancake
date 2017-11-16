@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using DAL.Abstract;
+using DAL.DataModel;
+
+namespace WebApplication.Controllers
+{
+    public class MealController : Controller
+    {
+        private IDataRepository repository;
+
+        public MealController(IDataRepository repository)
+        {
+            this.repository = repository;
+        }
+
+        // GET: Meal
+        public ActionResult Index()
+        {
+            var data = repository.GetMeals();
+            
+            return View(data);
+        }
+
+        
+        public ActionResult Details(int id)
+        {
+            Meal meal = repository.FindMeal(id);
+
+            if (meal == null)
+            {
+                //Add message that specified meal doesn't exist or redirect to index
+                return HttpNotFound();
+            }
+
+            return View(meal);
+        }
+
+
+    }
+}
