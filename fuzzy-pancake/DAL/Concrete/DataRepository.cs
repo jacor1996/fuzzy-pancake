@@ -25,16 +25,26 @@ namespace DAL.Concrete
             return meal;
         }
 
-        public bool AddMeal(Meal meal)
+        public void SaveMeal(Meal meal)
         {
-            bool isSuccessful = false;
-            if (db.Meals.FirstOrDefault(x => x.Name == meal.Name) == null)
+            if (meal.MealId == 0)
             {
                 db.Meals.Add(meal);
-                db.SaveChanges();
-                isSuccessful = true;
             }
-            return isSuccessful;
+            else
+            {
+                Meal dbEntry = db.Meals.Find(meal.MealId);
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = meal.Name;
+                    dbEntry.Calories = meal.Calories;
+                    dbEntry.Carbohydrates = meal.Carbohydrates;
+                    dbEntry.Fats = meal.Fats;
+                    dbEntry.Protein = meal.Protein;
+                }
+            }
+            db.SaveChanges();
+
         }
 
     }

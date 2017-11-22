@@ -35,7 +35,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                repository.AddMeal(meal);
+                repository.SaveMeal(meal);
                 return RedirectToAction("Index");
             }
             return View(meal);
