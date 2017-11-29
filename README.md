@@ -22,3 +22,34 @@ Aplikacja Webowa do zarzadzania dietą.
 - Entity Framework - komunikacja z bazą danych.
 - Ninject - wstrzykiwanie zależności do kontrolerów, kontrola przepływu danych w aplikacji.
 - (*) NUnit - testy jednostkowe aplikacji.
+
+## Raport 2:
+
+### Co już zrobiłem:
+
+a) Dostęp do danych
+Utworzyłem bazę danych oraz odpowiednie tabele
+Tabele zostały uzupełnione kilkoma przykładowymi wartościami
+Utworzyłem połączenie aplikacji z bazą danych przy użyciu Entity Framework
+
+b) Aplikacja
+Napisałem kontroler do obsługi posiłków, czyli dodawanie, edycja, wyświetlanie(pojedyńczy wpis oraz lista wpisów) oraz usuwanie.
+Do kontrolera zostały dodane przykładowe widoki (w późniejszym czasie zostanie poprawiona warstwa wizualna – css).
+
+c) Infrastruktura
+Klasy służace do obsługi danych, korzystają z interfejsów, wobec czego są mniej podatne na błędy podczas refaktoryzacji kodu.
+Zaimplementowanie wzorca IoC przy użyciu biblioteki Ninject, co pozwala na łatwe przeprowadzanie zmian w aplikacji.
+
+### Do zrobienia:
+
+a) Aplikacja
+Zaimplementowanie kontrolera do obsługi użytkowników (tworzenie konta, logowanie, odzyskiwanie hasła)
+Zaimplementowanie kontrolera służacego do dodawania posiłków do dziennika, przez użytkownika
+Dodanie widoków do powyższych kontrolerów.
+
+b) Infrastruktura
+Przeniesienie projektu na zewnętrzny hosting (aplikacji oraz bazy danych)
+
+### Co dalej:
+
+W przypadku zaimplementowania kontrolerów do obsługi użytkowników i dodawania posiłków, projekt będzie już naprawdę gotów jako prototyp. Kolejnym krokiem będzie poprawa wyglądu aplikacji oraz ewentualna refaktoryzacja kodu. W przypadku, gdy projekt skończę przed czasem, dodam testy jednostkowe do aplikacji, w celu ostatecznego sprawdzenia projektu pod względem ewentualnych błędów w kodzie.
