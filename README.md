@@ -28,27 +28,27 @@ Aplikacja Webowa do zarzadzania dietą.
 ### Co już zrobiłem:
 
 a) Dostęp do danych
-Utworzyłem bazę danych oraz odpowiednie tabele
-Tabele zostały uzupełnione kilkoma przykładowymi wartościami
-Utworzyłem połączenie aplikacji z bazą danych przy użyciu Entity Framework
+- Utworzyłem bazę danych oraz odpowiednie tabele
+- Tabele zostały uzupełnione kilkoma przykładowymi wartościami
+- Utworzyłem połączenie aplikacji z bazą danych przy użyciu Entity Framework
 
 b) Aplikacja
-Napisałem kontroler do obsługi posiłków, czyli dodawanie, edycja, wyświetlanie(pojedyńczy wpis oraz lista wpisów) oraz usuwanie.
-Do kontrolera zostały dodane przykładowe widoki (w późniejszym czasie zostanie poprawiona warstwa wizualna – css).
+- Napisałem kontroler do obsługi posiłków, czyli dodawanie, edycja, wyświetlanie(pojedyńczy wpis oraz lista wpisów) oraz usuwanie.
+- Do kontrolera zostały dodane przykładowe widoki (w późniejszym czasie zostanie poprawiona warstwa wizualna – css).
 
 c) Infrastruktura
-Klasy służace do obsługi danych, korzystają z interfejsów, wobec czego są mniej podatne na błędy podczas refaktoryzacji kodu.
-Zaimplementowanie wzorca IoC przy użyciu biblioteki Ninject, co pozwala na łatwe przeprowadzanie zmian w aplikacji.
+- Klasy służace do obsługi danych, korzystają z interfejsów, wobec czego są mniej podatne na błędy podczas refaktoryzacji kodu.
+- Zaimplementowanie wzorca IoC przy użyciu biblioteki Ninject, co pozwala na łatwe przeprowadzanie zmian w aplikacji.
 
 ### Do zrobienia:
 
 a) Aplikacja
-Zaimplementowanie kontrolera do obsługi użytkowników (tworzenie konta, logowanie, odzyskiwanie hasła)
-Zaimplementowanie kontrolera służacego do dodawania posiłków do dziennika, przez użytkownika
-Dodanie widoków do powyższych kontrolerów.
+- Zaimplementowanie kontrolera do obsługi użytkowników (tworzenie konta, logowanie, odzyskiwanie hasła)
+- Zaimplementowanie kontrolera służacego do dodawania posiłków do dziennika, przez użytkownika
+- Dodanie widoków do powyższych kontrolerów.
 
 b) Infrastruktura
-Przeniesienie projektu na zewnętrzny hosting (aplikacji oraz bazy danych)
+- Przeniesienie projektu na zewnętrzny hosting (aplikacji oraz bazy danych)
 
 ### Co dalej:
 
