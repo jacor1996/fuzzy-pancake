@@ -54,6 +54,22 @@ namespace WebApplication.Controllers
             return View(meal);
         }
 
+        public ActionResult Edit(int id)
+        {
+            Meal meal = repository.FindMeal(id);
+            return View(meal);
+        }
 
+        [HttpPost]
+        public ActionResult Edit(Meal meal)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveMeal(meal);
+                return RedirectToAction("Index");
+            }
+
+            return View(meal);
+        }
     }
 }
