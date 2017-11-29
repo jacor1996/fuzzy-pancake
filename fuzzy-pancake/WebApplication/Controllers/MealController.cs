@@ -71,5 +71,12 @@ namespace WebApplication.Controllers
 
             return View(meal);
         }
+
+        public ActionResult Delete(int id)
+        {
+            repository.RemoveMeal(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

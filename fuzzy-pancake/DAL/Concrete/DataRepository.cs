@@ -47,5 +47,16 @@ namespace DAL.Concrete
 
         }
 
+        public void RemoveMeal(int id)
+        {
+            Meal meal = db.Meals.Find(id);
+
+            if (meal != null)
+            {
+                db.Meals.Remove(meal);
+                db.SaveChanges();
+            }
+        }
+
     }
 }
