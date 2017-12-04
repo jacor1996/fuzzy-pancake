@@ -1,0 +1,12 @@
+﻿@model DAL.DataModel.User
+
+@{
+    ViewBag.Title = "User Panel";
+}
+
+<h2>User Panel</h2>
+
+@Html.ActionLink("Edit", "Edit", new { userName = HttpContext.Current.User.Identity.Name})
+@Html.ActionLink("Details", "Details", new { id=Model.UserId })
+
+   

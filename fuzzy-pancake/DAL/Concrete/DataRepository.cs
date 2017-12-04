@@ -65,7 +65,21 @@ namespace DAL.Concrete
 
         public void SaveUser(User user)
         {
-            throw new NotImplementedException();
+            User dbEntry = db.Users.Find(user.UserId);
+
+            if (dbEntry == null) //create new entry
+            {
+                db.Users.Add(user);
+            }
+
+            else //edit dbEntry
+            {
+                dbEntry.Age = user.Age;
+                dbEntry.Height = user.Height;
+                dbEntry.Weight = user.Weight;
+            }
+
+            db.SaveChanges();
         }
 
         public void RemoveUser(int id)
@@ -75,7 +89,14 @@ namespace DAL.Concrete
 
         public User FindUser(string userName)
         {
-            throw new NotImplementedException();
+            User user = db.Users.FirstOrDefault(x => x.Name.Equals(userName));
+            return user;
+        }
+
+        public User FindUser(int id)
+        {
+            User user = db.Users.FirstOrDefault(x => x.UserId == id);
+            return user;
         }
     }
 }

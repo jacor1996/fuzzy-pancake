@@ -26,5 +26,7 @@ namespace DAL.Abstract
         void RemoveUser(int id);
 
         User FindUser(string userName);
+
+        User FindUser(int id);
     }
 }
