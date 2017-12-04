@@ -58,5 +58,24 @@ namespace DAL.Concrete
             }
         }
 
+        public IQueryable<User> GetUsers()
+        {
+            return db.Users;
+        }
+
+        public void SaveUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User FindUser(string userName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

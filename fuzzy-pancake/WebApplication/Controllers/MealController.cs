@@ -21,7 +21,9 @@ namespace WebApplication.Controllers
         public ActionResult Index()
         {
             var data = repository.GetMeals();
-            
+
+            ViewBag.User = HttpContext.User.Identity.Name;
+
             return View(data);
         }
 
