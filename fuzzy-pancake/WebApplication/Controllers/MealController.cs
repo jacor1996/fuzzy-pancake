@@ -27,6 +27,22 @@ namespace WebApplication.Controllers
             return View(data);
         }
 
+        public ActionResult Get(string mealName)
+        {
+            IEnumerable<Meal> data;
+            if (mealName != String.Empty)
+            {
+                data = repository.GetMeals(mealName);
+            }
+
+            else
+            {
+                data = repository.GetMeals().Take(5);
+            }
+
+            return View(data);
+        }
+
         public ActionResult Create()
         {
             return View();

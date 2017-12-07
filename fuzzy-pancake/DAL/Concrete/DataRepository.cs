@@ -25,6 +25,11 @@ namespace DAL.Concrete
             return meal;
         }
 
+        public IQueryable<Meal> GetMeals(string mealName)
+        {
+            return db.Meals.Where(x => x.Name.Contains(mealName));
+        }
+
         public void SaveMeal(Meal meal)
         {
             if (meal.MealId == 0)

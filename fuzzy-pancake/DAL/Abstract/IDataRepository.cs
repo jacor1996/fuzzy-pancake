@@ -12,6 +12,8 @@ namespace DAL.Abstract
         //Meals
         IQueryable<Meal> GetMeals();
 
+        IQueryable<Meal> GetMeals(string mealName);
+
         void SaveMeal(Meal meal);
 
         void RemoveMeal(int id);
