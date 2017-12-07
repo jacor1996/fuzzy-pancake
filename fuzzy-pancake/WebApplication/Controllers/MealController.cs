@@ -43,11 +43,13 @@ namespace WebApplication.Controllers
             return View(data);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Meal meal)
         {
@@ -72,12 +74,14 @@ namespace WebApplication.Controllers
             return View(meal);
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Meal meal = _repository.FindMeal(id);
             return View(meal);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Meal meal)
         {
@@ -90,6 +94,7 @@ namespace WebApplication.Controllers
             return View(meal);
         }
 
+        [Authorize]
         public ActionResult Delete(int id)
         {
             _repository.RemoveMeal(id);
