@@ -12,17 +12,17 @@ namespace WebApplication.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        private IDataRepository repository;
+        private IDataRepository _repository;
 
         public UserController(IDataRepository repository)
         {
-            this.repository = repository;
+            this._repository = repository;
         }
 
         // GET: User
         public ActionResult Index()
         {
-            var user = repository.FindUser(HttpContext.User.Identity.Name);
+            var user = _repository.FindUser(HttpContext.User.Identity.Name);
             if (user == null)
             {
                 return RedirectToAction("Create");
@@ -42,7 +42,7 @@ namespace WebApplication.Controllers
             if (ModelState.IsValid)
             {
                 user.Name = HttpContext.User.Identity.Name;
-                repository.SaveUser(user);
+                _repository.SaveUser(user);
                 return RedirectToAction("Index");
             }
 
@@ -52,7 +52,7 @@ namespace WebApplication.Controllers
 
         public ActionResult Edit(string userName)
         {
-            User user = repository.FindUser(userName);
+            User user = _repository.FindUser(userName);
             string loggedUser = HttpContext.User.Identity.Name;
             string nameToCompare = user.Name.Substring(0, loggedUser.Length);
             if (nameToCompare.Equals(loggedUser))
@@ -68,7 +68,7 @@ namespace WebApplication.Controllers
             ModelState.Remove("Name");
             if (ModelState.IsValid)
             {
-                repository.SaveUser(user);
+                _repository.SaveUser(user);
             }
 
             return RedirectToAction("Index");
@@ -76,7 +76,7 @@ namespace WebApplication.Controllers
 
         public ActionResult Details(int id)
         {
-            User user = repository.FindUser(id);
+            User user = _repository.FindUser(id);
             return View(user);
         }
     }

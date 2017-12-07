@@ -10,17 +10,17 @@ namespace WebApplication.Controllers
 {
     public class MealController : Controller
     {
-        private IDataRepository repository;
+        private IDataRepository _repository;
 
         public MealController(IDataRepository repository)
         {
-            this.repository = repository;
+            this._repository = repository;
         }
 
         // GET: Meal
         public ActionResult Index()
         {
-            var data = repository.GetMeals();
+            var data = _repository.GetMeals();
 
             ViewBag.User = HttpContext.User.Identity.Name;
 
@@ -32,12 +32,12 @@ namespace WebApplication.Controllers
             IEnumerable<Meal> data;
             if (mealName != String.Empty)
             {
-                data = repository.GetMeals(mealName);
+                data = _repository.GetMeals(mealName);
             }
 
             else
             {
-                data = repository.GetMeals().Take(5);
+                data = _repository.GetMeals().Take(5);
             }
 
             return View(data);
@@ -53,7 +53,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                repository.SaveMeal(meal);
+                _repository.SaveMeal(meal);
                 return RedirectToAction("Index");
             }
             return View(meal);
@@ -61,7 +61,7 @@ namespace WebApplication.Controllers
 
         public ActionResult Details(int id)
         {
-            Meal meal = repository.FindMeal(id);
+            Meal meal = _repository.FindMeal(id);
           
             if (meal == null)
             {
@@ -74,7 +74,7 @@ namespace WebApplication.Controllers
 
         public ActionResult Edit(int id)
         {
-            Meal meal = repository.FindMeal(id);
+            Meal meal = _repository.FindMeal(id);
             return View(meal);
         }
 
@@ -83,7 +83,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                repository.SaveMeal(meal);
+                _repository.SaveMeal(meal);
                 return RedirectToAction("Index");
             }
 
@@ -92,7 +92,7 @@ namespace WebApplication.Controllers
 
         public ActionResult Delete(int id)
         {
-            repository.RemoveMeal(id);
+            _repository.RemoveMeal(id);
             return RedirectToAction("Index");
         }
 

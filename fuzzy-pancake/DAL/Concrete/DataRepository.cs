@@ -11,34 +11,34 @@ namespace DAL.Concrete
 {
     public class DataRepository : IDataRepository
     {
-        private DataModel.DataModel db = new DataModel.DataModel();
+        private DataModel.DataModel _db = new DataModel.DataModel();
 
         public IQueryable<Meal> GetMeals()
         {
-            return db.Meals;
+            return _db.Meals;
         }
 
         public Meal FindMeal(int id)
         {
             //Can be null, check in controller
-            Meal meal = db.Meals.FirstOrDefault(x => x.MealId == id);
+            Meal meal = _db.Meals.FirstOrDefault(x => x.MealId == id);
             return meal;
         }
 
         public IQueryable<Meal> GetMeals(string mealName)
         {
-            return db.Meals.Where(x => x.Name.Contains(mealName));
+            return _db.Meals.Where(x => x.Name.Contains(mealName));
         }
 
         public void SaveMeal(Meal meal)
         {
             if (meal.MealId == 0)
             {
-                db.Meals.Add(meal);
+                _db.Meals.Add(meal);
             }
             else
             {
-                Meal dbEntry = db.Meals.Find(meal.MealId);
+                Meal dbEntry = _db.Meals.Find(meal.MealId);
                 if (dbEntry != null)
                 {
                     dbEntry.Name = meal.Name;
@@ -48,33 +48,33 @@ namespace DAL.Concrete
                     dbEntry.Protein = meal.Protein;
                 }
             }
-            db.SaveChanges();
+            _db.SaveChanges();
 
         }
 
         public void RemoveMeal(int id)
         {
-            Meal meal = db.Meals.Find(id);
+            Meal meal = _db.Meals.Find(id);
 
             if (meal != null)
             {
-                db.Meals.Remove(meal);
-                db.SaveChanges();
+                _db.Meals.Remove(meal);
+                _db.SaveChanges();
             }
         }
 
         public IQueryable<User> GetUsers()
         {
-            return db.Users;
+            return _db.Users;
         }
 
         public void SaveUser(User user)
         {
-            User dbEntry = db.Users.Find(user.UserId);
+            User dbEntry = _db.Users.Find(user.UserId);
 
             if (dbEntry == null) //create new entry
             {
-                db.Users.Add(user);
+                _db.Users.Add(user);
             }
 
             else //edit dbEntry
@@ -84,7 +84,7 @@ namespace DAL.Concrete
                 dbEntry.Weight = user.Weight;
             }
 
-            db.SaveChanges();
+            _db.SaveChanges();
         }
 
         public void RemoveUser(int id)
@@ -94,13 +94,13 @@ namespace DAL.Concrete
 
         public User FindUser(string userName)
         {
-            User user = db.Users.FirstOrDefault(x => x.Name.Equals(userName));
+            User user = _db.Users.FirstOrDefault(x => x.Name.Equals(userName));
             return user;
         }
 
         public User FindUser(int id)
         {
-            User user = db.Users.FirstOrDefault(x => x.UserId == id);
+            User user = _db.Users.FirstOrDefault(x => x.UserId == id);
             return user;
         }
     }

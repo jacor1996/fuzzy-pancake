@@ -8,7 +8,7 @@ namespace DAL.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            User_Meals = new HashSet<User_Meals>();
+            UserMeals = new HashSet<UserMeals>();
         }
 
         public int UserId { get; set; }
@@ -24,6 +24,6 @@ namespace DAL.DataModel
         public double Height { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_Meals> User_Meals { get; set; }
+        public virtual ICollection<UserMeals> UserMeals { get; set; }
     }
 }

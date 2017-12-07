@@ -10,27 +10,27 @@ namespace WebApplication.Infrastructure
 {
     public class NinjectDependencyResolver : IDependencyResolver
     {
-        private IKernel kernel;
+        private IKernel _kernel;
 
         public NinjectDependencyResolver()
         {
-            kernel = new StandardKernel();
+            _kernel = new StandardKernel();
             AddBindings();
         }
 
         private void AddBindings()
         {
-            kernel.Bind<DAL.Abstract.IDataRepository>().To<DAL.Concrete.DataRepository>();
+            _kernel.Bind<DAL.Abstract.IDataRepository>().To<DAL.Concrete.DataRepository>();
         }
 
         public object GetService(Type serviceType)
         {
-            return kernel.TryGet(serviceType);
+            return _kernel.TryGet(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return kernel.GetAll(serviceType);
+            return _kernel.GetAll(serviceType);
         }
     }
 }

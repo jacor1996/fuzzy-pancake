@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.DataModel
 {
-    public partial class User_Meals
+    public partial class UserMeals
     {
         [Key]
         public int UserMealId { get; set; }
