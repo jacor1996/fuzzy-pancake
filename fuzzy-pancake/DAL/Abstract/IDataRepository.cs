@@ -34,5 +34,6 @@ namespace DAL.Abstract
         //UserMeals
         IQueryable<User_Meals> GetUserMeals(string userName);
 
+        void SaveUserMeal(User_Meals userMeal);
     }
 }

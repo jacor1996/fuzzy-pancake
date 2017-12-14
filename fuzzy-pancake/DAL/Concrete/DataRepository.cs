@@ -112,5 +112,29 @@ namespace DAL.Concrete
                 .Include(meal => meal.Meal)
                 .Include(user => user.User);
         }
+
+        public void SaveUserMeal(User_Meals userMeal)
+        {
+            User_Meals dbEntry = _db.User_Meals.Find(userMeal.UserMealId);
+
+            if (dbEntry == null) //create new entry
+            {
+                _db.User_Meals.Add(userMeal);
+            }
+
+            else //edit dbEntry
+            {
+                dbEntry.User = userMeal.User;
+                dbEntry.Meal = userMeal.Meal;
+                dbEntry.MealId = userMeal.MealId;
+                dbEntry.MealNumber = userMeal.MealNumber;
+                dbEntry.UserId = userMeal.UserId;
+                dbEntry.UserMealId = userMeal.UserMealId;
+                dbEntry.Amount = userMeal.Amount;
+                dbEntry.Date = userMeal.Date;
+            }
+
+            _db.SaveChanges();
+        }
     }
 }

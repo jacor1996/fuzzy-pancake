@@ -39,15 +39,22 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddMeal(int? id, int MealNames, User_Meals userMeal)
+        public ActionResult AddMeal(int id, int MealNames, User_Meals userMeal)
         {
             userMeal.MealId = id;
+            userMeal.Meal = repository.FindMeal(id);
             userMeal.MealNumber = MealNames;
+            string user = HttpContext.User.Identity.Name;
+            if (IsValidUser(user))
+            {
+                userMeal.User = repository.FindUser(user);
+                userMeal.UserId = userMeal.User.UserId;
+            }
+
             ModelState.Remove("MealId");
             if (ModelState.IsValid)
             {
-                
-
+                repository.SaveUserMeal(userMeal);
             }
             return RedirectToAction("Index");
         }
@@ -63,5 +70,15 @@ namespace WebApplication.Controllers
 
             return mealNames;
         }
+
+        public bool IsValidUser(string userName)
+        {
+            User user = repository.FindUser(userName);
+            string loggedUser = HttpContext.User.Identity.Name;
+            string nameToCompare = user.Name.Substring(0, loggedUser.Length);
+
+            return nameToCompare.Equals(loggedUser);
+        }
+
     }
 }

@@ -52,6 +52,7 @@ namespace WebApplication.Controllers
 
         public ActionResult Edit(string userName)
         {
+            /*
             User user = _repository.FindUser(userName);
             string loggedUser = HttpContext.User.Identity.Name;
             string nameToCompare = user.Name.Substring(0, loggedUser.Length);
@@ -59,7 +60,21 @@ namespace WebApplication.Controllers
             {
                 return View(user);
             }
+            */
+            if (IsValidUser(userName))
+            {
+                return View(userName);
+            }
             return HttpNotFound("You can not edit other users!");
+        }
+
+        public bool IsValidUser(string userName)
+        {
+            User user = _repository.FindUser(userName);
+            string loggedUser = HttpContext.User.Identity.Name;
+            string nameToCompare = user.Name.Substring(0, loggedUser.Length);
+
+            return nameToCompare.Equals(loggedUser);
         }
 
         [HttpPost]
