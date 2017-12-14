@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -102,6 +103,14 @@ namespace DAL.Concrete
         {
             User user = _db.Users.FirstOrDefault(x => x.UserId == id);
             return user;
+        }
+
+
+        public IQueryable<User_Meals> GetUserMeals(string userName)
+        {
+            return _db.User_Meals.Where(x => x.User.Name.Equals(userName))
+                .Include(meal => meal.Meal)
+                .Include(user => user.User);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace DAL.DataModel
         }
 
         public virtual DbSet<Meal> Meals { get; set; }
-        public virtual DbSet<UserMeals> UserMeals { get; set; }
+        public virtual DbSet<User_Meals> User_Meals { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

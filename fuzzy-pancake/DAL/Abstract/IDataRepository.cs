@@ -30,5 +30,9 @@ namespace DAL.Abstract
         User FindUser(string userName);
 
         User FindUser(int id);
+
+        //UserMeals
+        IQueryable<User_Meals> GetUserMeals(string userName);
+
     }
 }
