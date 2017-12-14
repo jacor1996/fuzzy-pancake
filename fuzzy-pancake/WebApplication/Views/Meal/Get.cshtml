@@ -53,9 +53,7 @@
             @Html.DisplayFor(modelItem => item.Protein)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MealId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MealId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MealId })
+            @Html.ActionLink("Add", "AddMeal", "UserMeals", new { id=item.MealId }, null)
         </td>
     </tr>
 }

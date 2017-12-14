@@ -25,5 +25,14 @@ namespace WebApplication.Controllers
             var userMeals = repository.GetUserMeals(userName);
             return View(userMeals);
         }
+
+        public ActionResult AddMeal(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

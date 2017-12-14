@@ -9,6 +9,7 @@ namespace DAL.DataModel
         [Key]
         public int UserMealId { get; set; }
 
+        [Range(0,5)]
         public int MealNumber { get; set; }
 
         public int? UserId { get; set; }
