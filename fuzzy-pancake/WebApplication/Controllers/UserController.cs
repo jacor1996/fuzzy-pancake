@@ -94,5 +94,6 @@ namespace WebApplication.Controllers
             User user = _repository.FindUser(id);
             return View(user);
         }
+
     }
 }
