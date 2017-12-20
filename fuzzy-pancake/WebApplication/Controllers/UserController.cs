@@ -95,5 +95,11 @@ namespace WebApplication.Controllers
             return View(user);
         }
 
+        public ActionResult UserData(int id)
+        {
+            double bmr = _repository.GetDailyCalories(id);
+            ViewBag.bmr = bmr;
+            return View();
+        }
     }
 }

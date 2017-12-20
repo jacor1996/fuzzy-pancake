@@ -105,6 +105,11 @@ namespace DAL.Concrete
             return user;
         }
 
+        public double GetDailyCalories(int id)
+        {
+            User user = FindUser(id);
+            return ( (9.99 * user.Weight) + (6.25 * user.Height - 4.92 * user.Age) + 5 );
+        }
 
         public IQueryable<User_Meals> GetUserMeals(string userName)
         {

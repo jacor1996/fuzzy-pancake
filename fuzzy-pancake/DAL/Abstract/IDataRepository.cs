@@ -31,6 +31,8 @@ namespace DAL.Abstract
 
         User FindUser(int id);
 
+        double GetDailyCalories(int id);
+
         //UserMeals
         IQueryable<User_Meals> GetUserMeals(string userName);
 
