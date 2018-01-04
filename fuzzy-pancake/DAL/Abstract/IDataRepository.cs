@@ -38,6 +38,8 @@ namespace DAL.Abstract
 
         IQueryable<User_Meals> GetUserMeals(string userName, DateTime date);
 
+        User_Meals FindUserMeals(int id);
+
         void SaveUserMeal(User_Meals userMeal);
     }
 }

@@ -26,6 +26,27 @@ namespace WebApplication.Controllers
             return View(userMeals);
         }
 
+        public ActionResult GetUserMeals(DateTime date)
+        {
+            string userName = HttpContext.User.Identity.Name;
+            var userMeals = repository.GetUserMeals(userName, date);
+
+            return View(userMeals);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var userMeal = repository.FindUserMeals(id);
+            if (userMeal == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.MealNames = CreateDropDownForMealNames();
+
+            return View(userMeal);
+        }
+
         public ActionResult AddMeal(int? id)
         {
             if (id == null)

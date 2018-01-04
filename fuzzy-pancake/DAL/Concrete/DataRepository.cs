@@ -123,6 +123,12 @@ namespace DAL.Concrete
             return GetUserMeals(userName).Where(x => x.Date.Equals(date));
         }
 
+        public User_Meals FindUserMeals(int id)
+        {
+            User_Meals userMeals = _db.User_Meals.FirstOrDefault(x => x.UserMealId == id);
+            return userMeals;
+        }
+
         public void SaveUserMeal(User_Meals userMeal)
         {
             User_Meals dbEntry = _db.User_Meals.Find(userMeal.UserMealId);
