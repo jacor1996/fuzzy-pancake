@@ -22,7 +22,7 @@ namespace WebApplication.Controllers
         public ActionResult Index()
         {
             string userName = HttpContext.User.Identity.Name;
-            var userMeals = repository.GetUserMeals(userName);
+            var userMeals = repository.GetUserMeals(userName);              
             return View(userMeals);
         }
 

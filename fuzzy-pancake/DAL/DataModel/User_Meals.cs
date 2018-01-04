@@ -19,6 +19,7 @@ namespace DAL.DataModel
         public double? Amount { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
 
         public virtual Meal Meal { get; set; }

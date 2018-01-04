@@ -118,6 +118,11 @@ namespace DAL.Concrete
                 .Include(user => user.User);
         }
 
+        public IQueryable<User_Meals> GetUserMeals(string userName, DateTime date)
+        {
+            return GetUserMeals(userName).Where(x => x.Date.Equals(date));
+        }
+
         public void SaveUserMeal(User_Meals userMeal)
         {
             User_Meals dbEntry = _db.User_Meals.Find(userMeal.UserMealId);
