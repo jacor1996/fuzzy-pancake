@@ -120,7 +120,9 @@ namespace DAL.Concrete
 
         public IQueryable<User_Meals> GetUserMeals(string userName, DateTime date)
         {
-            return GetUserMeals(userName).Where(x => x.Date.Equals(date));
+            return _db.User_Meals.Where(x => x.User.Name.Equals(userName) && x.Date.Equals(date))
+                .Include(meal => meal.Meal)
+                .Include(user => user.User);
         }
 
         public User_Meals FindUserMeals(int id)

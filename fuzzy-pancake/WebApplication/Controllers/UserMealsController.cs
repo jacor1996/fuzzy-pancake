@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DAL.Abstract;
 using DAL.DataModel;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -12,18 +13,38 @@ namespace WebApplication.Controllers
     public class UserMealsController : Controller
     {
         private IDataRepository repository;
+        private UserMealsViewModel model;
 
         public UserMealsController(IDataRepository repository)
         {
             this.repository = repository;
+            this.model = new UserMealsViewModel();
         }
 
         // GET: UserMeals
         public ActionResult Index()
         {
             string userName = HttpContext.User.Identity.Name;
-            var userMeals = repository.GetUserMeals(userName);              
+            var userMeals = repository.GetUserMeals(userName);
+
             return View(userMeals);
+        }
+
+        public ActionResult Index2()
+        {
+            string userName = HttpContext.User.Identity.Name;
+
+            model.UserMeals = repository.GetUserMeals(userName, model.Date).ToList();
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index2(DateTime date)
+        {
+            this.model.Date = date;
+            return RedirectToAction("Index2");
         }
 
         public ActionResult GetUserMeals(DateTime date)

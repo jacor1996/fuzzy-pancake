@@ -1,0 +1,58 @@
+﻿@using DAL.DataModel
+@model WebApplication.Models.UserMealsViewModel
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Meal number
+        </th>
+        <th>
+            Amount
+        </th>
+        <th>
+            Date
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.UserMeals) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meal.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MealNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.UserMealId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.UserMealId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm("Index2"))
+{
+    <input type="datetime" value="date"/>
+    <input type="submit" value="Go"/>
+}
+
+@{ Html.RenderAction("Get", "Meal");}
+
