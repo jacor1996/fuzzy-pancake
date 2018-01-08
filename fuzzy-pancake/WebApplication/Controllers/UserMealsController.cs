@@ -19,6 +19,7 @@ namespace WebApplication.Controllers
         {
             this.repository = repository;
             this.model = new UserMealsViewModel();
+            this.model.Date = System.DateTime.Now;
         }
 
         // GET: UserMeals
@@ -30,31 +31,35 @@ namespace WebApplication.Controllers
             return View(userMeals);
         }
 
-        public ActionResult Index2()
+        public ActionResult Index2(string date)
         {
             string userName = HttpContext.User.Identity.Name;
+            //string date = "12/14/2017";
 
-            model.UserMeals = repository.GetUserMeals(userName, model.Date).ToList();
-
-
+            var data = repository.GetUserMeals(userName);
+            if (date == null)
+            {
+                model.UserMeals = data.ToList();
+            }
+            else
+            {
+                DateTime dt = DateTime.Parse(date.ToString());
+                //model.UserMeals = data.Where(x => x.Date.ToString().Contains(date)).ToList();
+                model.UserMeals = data.Where(x => x.Date == dt).ToList();
+            }
+            
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult Index2(DateTime date)
-        {
-            this.model.Date = date;
-            return RedirectToAction("Index2");
-        }
-
-        public ActionResult GetUserMeals(DateTime date)
+        /*
+        public ActionResult GetUserMeals(string date)
         {
             string userName = HttpContext.User.Identity.Name;
             var userMeals = repository.GetUserMeals(userName, date);
 
             return View(userMeals);
         }
-
+        */
         public ActionResult Edit(int id)
         {
             var userMeal = repository.FindUserMeals(id);
