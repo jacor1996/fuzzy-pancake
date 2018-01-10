@@ -7,6 +7,16 @@
 
 <h2>Index2</h2>
 
+<div>
+    <p>Kcal: @Model.CaloryHelper.Calories / @Model.CaloryHelper.CaloriesLimit</p>
+    <p>Protein: @Model.CaloryHelper.Proteins Kcal: @Model.CaloryHelper.CaloriesFromProteins</p>
+    <p>Carbohydrates: @Model.CaloryHelper.Carbohydrates Kcal: @Model.CaloryHelper.CaloriesFromCarbs</p>
+    <p>Fats: @Model.CaloryHelper.Fats Kcal: @Model.CaloryHelper.CaloriesFromFats</p>
+    
+    <p>Proteins Percentage: @Model.CaloryHelper.ProteinsPercentage.ToString("F")</p>
+    <p>Carbohydrates Percentage: @Model.CaloryHelper.CarbsPercentage.ToString("F")</p>
+    <p>Fats Percentage: @Model.CaloryHelper.FatsPercentage.ToString("F")</p>
+</div>
 
 <table class="table">
     <tr>

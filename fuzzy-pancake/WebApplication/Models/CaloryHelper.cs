@@ -10,17 +10,25 @@ namespace WebApplication.Models
     {
         private ICollection<User_Meals> Meals { get; set; }
         private User User { get; set; }
+
         public double Fats { get; set; } = 0;
         public double Carbohydrates { get; set; } = 0;
         public double Proteins { get; set; } = 0;
         public double Calories { get; set; } = 0;
         public double CaloriesLimit { get; set; } = 0;
 
+        public double CaloriesFromFats;
+        public double CaloriesFromCarbs;
+        public double CaloriesFromProteins;
+        public double FatsPercentage;
+        public double ProteinsPercentage;
+        public double CarbsPercentage;
+
         public CaloryHelper(ICollection<User_Meals> data, User user)
         {
             Meals = data;
             User = user;
-            //ComputeDailyNutrients();
+            ComputeDailyNutrients();
             CaloriesLimit = BMR();
         }
 
@@ -29,11 +37,20 @@ namespace WebApplication.Models
             foreach (var u in Meals)
             {
                 //Amount equals 0 by default
-                Calories += (double)u.Amount * u.Meal.Calories;
-                Fats += (double)u.Amount * u.Meal.Fats;
-                Carbohydrates += (double)u.Amount * u.Meal.Carbohydrates;
-                Proteins += (double) u.Amount * u.Meal.Protein;
+                Calories += ((double)u.Amount * u.Meal.Calories)/100;
+                Fats += ((double)u.Amount * u.Meal.Fats)/100;
+                Carbohydrates += ((double)u.Amount * u.Meal.Carbohydrates)/100;
+                Proteins += ((double) u.Amount * u.Meal.Protein)/100;
+
             }
+
+            CaloriesFromFats = Fats * 9;
+            CaloriesFromCarbs = Carbohydrates * 4.5;
+            CaloriesFromProteins = Proteins * 4.5;
+
+            FatsPercentage = CaloriesFromFats / Calories * 100;
+            CarbsPercentage = CaloriesFromCarbs / Calories * 100;
+            ProteinsPercentage = CaloriesFromProteins / Calories * 100;
         }
 
         private double BMR()

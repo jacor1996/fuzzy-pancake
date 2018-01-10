@@ -20,7 +20,6 @@ namespace WebApplication.Controllers
         {
             this.repository = repository;
             this.model = new UserMealsViewModel();
-            this.model.Date = System.DateTime.Now;
         }
 
         // GET: UserMeals
@@ -53,10 +52,11 @@ namespace WebApplication.Controllers
             }
             else
             {
-                DateTime dt = DateTime.Parse(date.ToString());
-                //model.UserMeals = data.Where(x => x.Date.ToString().Contains(date)).ToList();
+                DateTime dt = DateTime.Parse(date);
                 model.UserMeals = data.Where(x => x.Date == dt).ToList();
             }
+
+            model.CaloryHelper = new CaloryHelper(model.UserMeals.ToList(), repository.FindUser(userName));
 
             return View(model);
         }
