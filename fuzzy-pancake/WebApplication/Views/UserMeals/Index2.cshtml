@@ -25,7 +25,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model.UserMeals) {
+    @foreach (User_Meals item in Model.UserMeals) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Meal.Name)
@@ -50,9 +50,10 @@
 
 @using (Html.BeginForm("Index2"))
 {
-    <input type="datetime" value="date"/>
+    @Html.EditorFor(model => model.Date)
     <input type="submit" value="Go"/>
 }
+
 
 @{ Html.RenderAction("Get", "Meal");}
 

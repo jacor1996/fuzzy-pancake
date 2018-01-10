@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -36,6 +37,15 @@ namespace WebApplication.Controllers
             string userName = HttpContext.User.Identity.Name;
             //string date = "12/14/2017";
 
+            if (String.IsNullOrEmpty(date))
+            {
+                model.Date = DateTime.Now;
+            }
+            else
+            {
+                model.Date = DateTime.Parse(date);
+            }
+
             var data = repository.GetUserMeals(userName);
             if (date == null)
             {
@@ -47,10 +57,35 @@ namespace WebApplication.Controllers
                 //model.UserMeals = data.Where(x => x.Date.ToString().Contains(date)).ToList();
                 model.UserMeals = data.Where(x => x.Date == dt).ToList();
             }
-            
+
             return View(model);
         }
 
+        /*
+        public ActionResult Index2()
+        {
+            string userName = HttpContext.User.Identity.Name;
+            if (model.User == null) { model.User = repository.FindUser(userName); }
+
+            string s = model.Date.ToShortDateString();
+
+            model.UserMeals = repository.GetUserMeals(model.User.Name)
+                .Where(x => DbFunctions.TruncateTime(x.Date).ToString() == "14/12/2017").ToList();
+            
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index2(string date)
+        {
+            if (date != "" || date == null)
+            {
+                model.Date = DateTime.Parse(date);
+            }
+            return RedirectToAction("Index2");
+        }
+        */
         /*
         public ActionResult GetUserMeals(string date)
         {

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using DAL.Abstract;
 using DAL.DataModel;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -99,6 +100,7 @@ namespace WebApplication.Controllers
         {
             double bmr = _repository.GetDailyCalories(id);
             ViewBag.bmr = bmr;
+
             return View();
         }
     }
