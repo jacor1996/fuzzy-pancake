@@ -4,58 +4,59 @@
     ViewBag.Title = "Get";
 }
 
-<h2>Get</h2>
+<div class="jumbotron">
+    @using (Html.BeginForm())
+    {
+        @Html.TextArea("mealName", new {@class = "form-control"});
+        <input type="submit" value="Get"/>
+    }
 
-@using (Html.BeginForm())
-{
-    @Html.TextArea("mealName", new {@class = "form-control"});
-    <input type="submit" value="Get"/>
-}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carbohydrates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Protein)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Calories)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fats)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Carbohydrates)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Protein)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Calories)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fats)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carbohydrates)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Protein)
+                </td>
+                <td>
+                    @Html.ActionLink("Add", "AddMeal", "UserMeals", new {id = item.MealId}, null)
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Calories)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fats)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Carbohydrates)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Protein)
-        </td>
-        <td>
-            @Html.ActionLink("Add", "AddMeal", "UserMeals", new { id=item.MealId }, null)
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</div>

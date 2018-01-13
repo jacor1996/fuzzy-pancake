@@ -58,6 +58,14 @@ namespace WebApplication.Controllers
 
             model.CaloryHelper = new CaloryHelper(model.UserMeals.ToList(), repository.FindUser(userName));
 
+            var breakfast = model.UserMeals.Where(x => x.MealNumber == 0);
+            var lunch = model.UserMeals.Where(x => x.MealNumber == 1);
+            var dinner = model.UserMeals.Where(x => x.MealNumber == 2);
+            var snack = model.UserMeals.Where(x => x.MealNumber == 3);
+            var supper = model.UserMeals.Where(x => x.MealNumber == 4);
+
+            model.SetMeals(breakfast, lunch, dinner, snack, supper);
+
             return View(model);
         }
 

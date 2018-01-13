@@ -18,5 +18,24 @@ namespace WebApplication.Models
 
         public virtual User User { get; set; }
         public virtual CaloryHelper CaloryHelper { get; set; }
+        
+        public virtual IEnumerable<User_Meals> Breakfast { get; set; }
+        public virtual IEnumerable<User_Meals> Lunch { get; set; }
+        public virtual IEnumerable<User_Meals> Dinner { get; set; }
+        public virtual IEnumerable<User_Meals> Snack { get; set; }
+        public virtual IEnumerable<User_Meals> Supper { get; set; }
+
+        public void SetMeals(IEnumerable<User_Meals> breakfast,
+            IEnumerable<User_Meals> lunch,
+            IEnumerable<User_Meals> dinner,
+            IEnumerable<User_Meals> snack,
+            IEnumerable<User_Meals> supper)
+        {
+            Breakfast = breakfast;
+            Lunch = lunch;
+            Dinner = dinner;
+            Snack = snack;
+            Supper = supper;
+        }
     }
 }
