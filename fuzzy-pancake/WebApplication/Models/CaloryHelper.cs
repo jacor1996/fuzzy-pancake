@@ -16,6 +16,7 @@ namespace WebApplication.Models
         public double Proteins { get; set; } = 0;
         public double Calories { get; set; } = 0;
         public double CaloriesLimit { get; set; } = 0;
+        public double Bmi { get; set; } = 0;
 
         public double CaloriesFromFats;
         public double CaloriesFromCarbs;
@@ -29,7 +30,8 @@ namespace WebApplication.Models
             Meals = data;
             User = user;
             ComputeDailyNutrients();
-            CaloriesLimit = BMR();
+            CaloriesLimit = ComputeBmr();
+            Bmi = ComputeBmi();
         }
 
         private void ComputeDailyNutrients()
@@ -53,7 +55,7 @@ namespace WebApplication.Models
             ProteinsPercentage = CaloriesFromProteins / Calories * 100;
         }
 
-        private double BMR()
+        private double ComputeBmr()
         {
             const double weightConstant = 9.99;
             const double heightConstant = 4.92;
@@ -63,5 +65,15 @@ namespace WebApplication.Models
 
             return bmr;
         }
+
+        private double ComputeBmi()
+        {
+            double mass = User.Weight;
+            double height = User.Height;
+            double bmi = mass / (height * height);
+
+            return bmi;
+        }
+
     }
 }

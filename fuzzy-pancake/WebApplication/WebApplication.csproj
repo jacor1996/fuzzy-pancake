@@ -284,6 +284,7 @@
     <Content Include="Views\UserMeals\GetUserMeals.cshtml" />
     <Content Include="Views\UserMeals\Edit.cshtml" />
     <Content Include="Views\UserMeals\Index2.cshtml" />
+    <Content Include="Views\UserMeals\CaloryView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
