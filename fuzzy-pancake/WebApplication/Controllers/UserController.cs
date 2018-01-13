@@ -64,7 +64,8 @@ namespace WebApplication.Controllers
             */
             if (IsValidUser(userName))
             {
-                return View(userName);
+                User user = _repository.FindUser(userName);
+                return View(user);
             }
             return HttpNotFound("You can not edit other users!");
         }
