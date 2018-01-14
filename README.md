@@ -53,3 +53,19 @@ b) Infrastruktura
 ### Co dalej:
 
 W przypadku zaimplementowania kontrolerów do obsługi użytkowników i dodawania posiłków, projekt będzie już naprawdę gotów jako prototyp. Kolejnym krokiem będzie poprawa wyglądu aplikacji oraz ewentualna refaktoryzacja kodu. W przypadku, gdy projekt skończę przed czasem, dodam testy jednostkowe do aplikacji, w celu ostatecznego sprawdzenia projektu pod względem ewentualnych błędów w kodzie.
+
+## Raport 3
+
+### Zmiany względem prototypu:
+
+Dodanie klasy obliczającej spożyte kalorie w danym dniu oraz procentowy wkład każdego składnika w całkowite zapotrzebowanie kaloryczne.
+Poprawienie wyglądu aplikacji.
+Dodanie możliwości wyszukiwania posiłków po dacie dodania.
+Zmiana w wyświetlaniu posiłków, zamiast pokazywania wszystkich posiłków, są one teraz podzielone na dania (śniadanie, lunch, obiad, przekąska, kolacja).
+
+### Do zrobienia:
+
+Dodanie nowej tabeli do bazy dancyh, do przechowywania aktywności fizycznych.
+Dodanie kontrolera do ubsługi dodawania i edytowania aktywności fizycznych.
+Zaimplementowanie metod dodających spalone kalorie podczas aktywności fizycznych do dziennego zapotrzebowania kalorycznego.
+(*) Napisanie kilku testów jednostkowych.
