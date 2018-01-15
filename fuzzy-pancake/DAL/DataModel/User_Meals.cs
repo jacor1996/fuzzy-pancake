@@ -17,6 +17,7 @@ namespace DAL.DataModel
 
         public int? MealId { get; set; }
 
+        [Required]
         public double? Amount { get; set; }
 
         [Column(TypeName = "date")]

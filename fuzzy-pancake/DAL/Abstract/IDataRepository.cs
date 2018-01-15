@@ -44,5 +44,13 @@ namespace DAL.Abstract
 
         //Activities
         IQueryable<Activity> GetActivities();
+
+        void SaveActivity(Activity activity);
+
+        Activity FindActivity(int id);
+
+        //UserActivities
+        IQueryable<UserActivity> GetUserActivities();
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DAL.Abstract;
+using DAL.DataModel;
 
 namespace WebApplication.Controllers
 {
@@ -21,6 +22,46 @@ namespace WebApplication.Controllers
         {
             var activities = repository.GetActivities();
             return View(activities);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Activity activity)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveActivity(activity);
+                return RedirectToAction("Index");
+            }
+            return View(activity);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var activity = repository.FindActivity(id);
+
+            if (activity == null)
+            {
+                return HttpNotFound("Id does not exist");
+            }
+
+            return View(activity);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Activity activity)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveActivity(activity);
+                return RedirectToAction("Index");
+            }
+
+            return View(activity);
         }
     }
 }

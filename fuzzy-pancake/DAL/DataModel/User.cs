@@ -12,6 +12,7 @@ namespace DAL.DataModel
         public User()
         {
             User_Meals = new HashSet<User_Meals>();
+            UserActivities = new HashSet<UserActivity>();
         }
 
         public int UserId { get; set; }
@@ -28,5 +29,8 @@ namespace DAL.DataModel
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_Meals> User_Meals { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserActivity> UserActivities { get; set; }
     }
 }

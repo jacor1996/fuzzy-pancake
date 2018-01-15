@@ -75,9 +75,11 @@
     <Compile Include="Concrete\DataRepository.cs" />
     <Compile Include="DataModel\Activity.cs" />
     <Compile Include="DataModel\DataModel.cs" />
+    <Compile Include="DataModel\FinalModel.cs" />
     <Compile Include="DataModel\Meal.cs" />
     <Compile Include="DataModel\UpdatedModel.cs" />
     <Compile Include="DataModel\User.cs" />
+    <Compile Include="DataModel\UserActivity.cs" />
     <Compile Include="DataModel\User_Meals.cs" />
   </ItemGroup>
   <ItemGroup>

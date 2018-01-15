@@ -26,5 +26,7 @@ namespace DAL.DataModel
                 .IsFixedLength()
                 .IsUnicode(false);
         }
+
+        public System.Data.Entity.DbSet<DAL.DataModel.UserActivity> UserActivities { get; set; }
     }
 }

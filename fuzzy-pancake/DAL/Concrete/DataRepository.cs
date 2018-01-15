@@ -13,7 +13,7 @@ namespace DAL.Concrete
     public class DataRepository : IDataRepository
     {
         //private DataModel.DataModel _db = new DataModel.DataModel();
-        private UpdatedModel _db = new UpdatedModel();
+        private FinalModel _db = new FinalModel();
 
         public IQueryable<Meal> GetMeals()
         {
@@ -161,6 +161,38 @@ namespace DAL.Concrete
         public IQueryable<Activity> GetActivities()
         {
             return _db.Activities;
+        }
+
+        public Activity FindActivity(int id)
+        {
+            return _db.Activities.FirstOrDefault(x => x.ActivityId == id);
+        }
+
+        public void SaveActivity(Activity activity)
+        {
+            Activity dbEntry = _db.Activities.Find(activity.ActivityId);
+
+            if (dbEntry == null) //create new entry
+            {
+                _db.Activities.Add(activity);
+            }
+
+            else //edit dbEntry
+            {
+                dbEntry.ActivityId = activity.ActivityId;
+                dbEntry.CaloriesBurnedPerHour = activity.CaloriesBurnedPerHour;
+                dbEntry.Name = activity.Name;
+            }
+
+            _db.SaveChanges();
+        }
+
+        //UserActivities
+        public IQueryable<UserActivity> GetUserActivities()
+        {
+            return _db.UserActivities
+                .Include(x => x.User)
+                .Include(x => x.Activity);
         }
     }
 }
