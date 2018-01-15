@@ -291,6 +291,8 @@
     <Content Include="Views\UserActivity\Index.cshtml" />
     <Content Include="Views\Activity\Create.cshtml" />
     <Content Include="Views\Activity\Edit.cshtml" />
+    <Content Include="Views\Activity\Get.cshtml" />
+    <Content Include="Views\UserActivity\AddActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

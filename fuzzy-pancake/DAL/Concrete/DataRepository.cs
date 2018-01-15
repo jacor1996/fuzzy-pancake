@@ -163,6 +163,11 @@ namespace DAL.Concrete
             return _db.Activities;
         }
 
+        public IQueryable<Activity> GetActivities(string activityName)
+        {
+            return GetActivities().Where(x => x.Name.Contains(activityName));
+        }
+
         public Activity FindActivity(int id)
         {
             return _db.Activities.FirstOrDefault(x => x.ActivityId == id);
@@ -193,6 +198,37 @@ namespace DAL.Concrete
             return _db.UserActivities
                 .Include(x => x.User)
                 .Include(x => x.Activity);
+        }
+
+        public UserActivity FindUserActivity(int id)
+        {
+            var userActivity = _db.UserActivities.FirstOrDefault(x => x.ActivityId == id);
+            return userActivity;
+        }
+
+        public void SaveUserActivity(UserActivity userActivity)
+        {
+            UserActivity dbEntry = _db.UserActivities.Find(userActivity.ActivityId);
+
+            if (dbEntry == null) //create new entry
+            {
+                _db.UserActivities.Add(userActivity);
+            }
+
+            else //edit dbEntry
+            {
+                dbEntry.UserId = userActivity.UserId;
+                dbEntry.User = userActivity.User;
+                dbEntry.Activity = userActivity.Activity;
+                dbEntry.ActivityId = userActivity.ActivityId;
+                dbEntry.UserActivityId = userActivity.UserActivityId;
+                dbEntry.Date = userActivity.Date;
+                dbEntry.Hours = userActivity.Hours;
+                dbEntry.Minutes = userActivity.Minutes;
+                dbEntry.Seconds = userActivity.Seconds;
+            }
+
+            _db.SaveChanges();
         }
     }
 }

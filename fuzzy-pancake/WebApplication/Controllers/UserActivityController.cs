@@ -8,6 +8,7 @@ using DAL.DataModel;
 
 namespace WebApplication.Controllers
 {
+    [Authorize]
     public class UserActivityController : Controller
     {
         private IDataRepository repository;
@@ -22,6 +23,47 @@ namespace WebApplication.Controllers
         {
             var userActivity = repository.GetUserActivities();
             return View(userActivity);
+        }
+
+        public ActionResult AddActivity(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddActivity(int id, UserActivity userActivity)
+        {
+            userActivity.ActivityId = id;
+            userActivity.Activity = repository.FindActivity(id);
+            
+            string userName = HttpContext.User.Identity.Name;
+            if (IsValidUser(userName))
+            {
+                userActivity.User = repository.FindUser(userName);
+                userActivity.UserId = userActivity.User.UserId;
+            }
+
+            ModelState.Remove("ActivityId");
+            if (ModelState.IsValid)
+            {
+                repository.SaveUserActivity(userActivity);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public bool IsValidUser(string userName)
+        {
+            User user = repository.FindUser(userName);
+            string loggedUser = HttpContext.User.Identity.Name;
+            string nameToCompare = user.Name.Substring(0, loggedUser.Length);
+
+            return nameToCompare.Equals(loggedUser);
         }
     }
 }

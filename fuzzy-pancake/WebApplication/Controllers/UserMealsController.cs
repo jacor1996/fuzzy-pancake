@@ -69,40 +69,6 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
-        /*
-        public ActionResult Index2()
-        {
-            string userName = HttpContext.User.Identity.Name;
-            if (model.User == null) { model.User = repository.FindUser(userName); }
-
-            string s = model.Date.ToShortDateString();
-
-            model.UserMeals = repository.GetUserMeals(model.User.Name)
-                .Where(x => DbFunctions.TruncateTime(x.Date).ToString() == "14/12/2017").ToList();
-            
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Index2(string date)
-        {
-            if (date != "" || date == null)
-            {
-                model.Date = DateTime.Parse(date);
-            }
-            return RedirectToAction("Index2");
-        }
-        */
-        /*
-        public ActionResult GetUserMeals(string date)
-        {
-            string userName = HttpContext.User.Identity.Name;
-            var userMeals = repository.GetUserMeals(userName, date);
-
-            return View(userMeals);
-        }
-        */
         public ActionResult Edit(int id)
         {
             var userMeal = repository.FindUserMeals(id);

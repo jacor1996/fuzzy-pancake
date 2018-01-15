@@ -20,12 +20,16 @@ namespace DAL.DataModel
         [StringLength(128)]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Enter calories per 100 grams of product.")]
         public double Calories { get; set; }
 
+        [Required(ErrorMessage = "Enter fats per 100 grams of product.")]
         public double Fats { get; set; }
 
+        [Required(ErrorMessage = "Enter carbohydrates per 100 grams of product.")]
         public double Carbohydrates { get; set; }
 
+        [Required(ErrorMessage = "Enter proteins per 100 grams of product.")]
         public double Protein { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

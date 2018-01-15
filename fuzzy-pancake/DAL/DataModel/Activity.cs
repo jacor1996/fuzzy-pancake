@@ -21,6 +21,7 @@ namespace DAL.DataModel
         [StringLength(128)]
         public string Name { get; set; }
 
+        [Required]
         public double CaloriesBurnedPerHour { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

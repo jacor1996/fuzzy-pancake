@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DAL.DataModel.Activity>
+
+@using (Html.BeginForm())
+{
+    @Html.TextArea("activityName", new {@class = "form-control"});
+    <input type="submit" value="Get"/>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CaloriesBurnedPerHour)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CaloriesBurnedPerHour)
+        </td>
+        <td>
+            @Html.ActionLink("Add", "AddActivity", "UserActivity", new {id = item.ActivityId}, null)
+        </td>
+    </tr>
+}
+
+</table>

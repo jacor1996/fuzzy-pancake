@@ -16,9 +16,18 @@ namespace DAL.DataModel
         public int ActivityId { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        public TimeSpan Time { get; set; }
+        [Required]
+        [Range(0,12)]
+        public int Hours { get; set; }
+        [Required]
+        [Range(0, 59)]
+        public int Minutes { get; set; }
+        [Required]
+        [Range(0, 59)]
+        public int Seconds { get; set; }
 
         public virtual Activity Activity { get; set; }
 

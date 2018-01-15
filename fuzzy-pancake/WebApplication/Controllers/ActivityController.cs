@@ -8,6 +8,7 @@ using DAL.DataModel;
 
 namespace WebApplication.Controllers
 {
+    [Authorize]
     public class ActivityController : Controller
     {
         private IDataRepository repository;
@@ -62,6 +63,22 @@ namespace WebApplication.Controllers
             }
 
             return View(activity);
+        }
+
+        public ActionResult Get(string activityName)
+        {
+            IEnumerable<Activity> data;
+            if (activityName != String.Empty)
+            {
+                data = repository.GetActivities(activityName);
+            }
+
+            else
+            {
+                data = repository.GetActivities().Take(5);
+            }
+
+            return View(data);
         }
     }
 }
