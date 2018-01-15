@@ -12,7 +12,8 @@ namespace DAL.Concrete
 {
     public class DataRepository : IDataRepository
     {
-        private DataModel.DataModel _db = new DataModel.DataModel();
+        //private DataModel.DataModel _db = new DataModel.DataModel();
+        private UpdatedModel _db = new UpdatedModel();
 
         public IQueryable<Meal> GetMeals()
         {
@@ -154,6 +155,12 @@ namespace DAL.Concrete
             }
 
             _db.SaveChanges();
+        }
+
+        //Activities
+        public IQueryable<Activity> GetActivities()
+        {
+            return _db.Activities;
         }
     }
 }

@@ -41,5 +41,8 @@ namespace DAL.Abstract
         User_Meals FindUserMeals(int id);
 
         void SaveUserMeal(User_Meals userMeal);
+
+        //Activities
+        IQueryable<Activity> GetActivities();
     }
 }
