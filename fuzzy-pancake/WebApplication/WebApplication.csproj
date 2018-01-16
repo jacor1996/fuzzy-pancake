@@ -280,12 +280,12 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\Meal\Get.cshtml" />
-    <Content Include="Views\UserMeals\Index.cshtml" />
+    <Content Include="Views\UserMeals\Indexx.cshtml" />
     <Content Include="Views\UserMeals\AddMeal.cshtml" />
     <Content Include="Views\User\UserData.cshtml" />
     <Content Include="Views\UserMeals\GetUserMeals.cshtml" />
     <Content Include="Views\UserMeals\Edit.cshtml" />
-    <Content Include="Views\UserMeals\Index2.cshtml" />
+    <Content Include="Views\UserMeals\Index.cshtml" />
     <Content Include="Views\UserMeals\CaloryView.cshtml" />
     <Content Include="Views\Activity\Index.cshtml" />
     <Content Include="Views\UserActivity\Index.cshtml" />

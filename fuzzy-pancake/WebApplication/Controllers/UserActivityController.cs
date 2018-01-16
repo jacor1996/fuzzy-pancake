@@ -19,8 +19,9 @@ namespace WebApplication.Controllers
         }
 
         // GET: UserActivity
-        public ActionResult Index()
+        public ActionResult Index(string date)
         {
+            //DateTime dt = DateTime.Parse(date);
             var userActivity = repository.GetUserActivities();
             return View(userActivity);
         }

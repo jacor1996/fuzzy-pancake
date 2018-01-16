@@ -1,12 +1,14 @@
 ﻿@model WebApplication.Models.CaloryHelper
 
+@{
+    double totalCals = Model.CaloriesLimit + Model.CaloriesFromActivities;
+}
+
 <div class="jumbotron">
     <p>Kcal: @Model.Calories.ToString("F") / @Model.CaloriesLimit.ToString("F")</p>
     <p>Protein: @Model.Proteins.ToString("F") Kcal: @Model.CaloriesFromProteins.ToString("F")</p>
     <p>Carbohydrates: @Model.Carbohydrates.ToString("F") Kcal: @Model.CaloriesFromCarbs.ToString("F")</p>
     <p>Fats: @Model.Fats.ToString("F") Kcal: @Model.CaloriesFromFats.ToString("F")</p>
-
-    <p>Proteins Percentage: @Model.ProteinsPercentage.ToString("F")</p>
-    <p>Carbohydrates Percentage: @Model.CarbsPercentage.ToString("F")</p>
-    <p>Fats Percentage: @Model.FatsPercentage.ToString("F")</p>
+    <p>Kcals from activities: @Model.CaloriesFromActivities.ToString("F")</p>
+    <p>Total Kcals: @totalCals.ToString("F")</p>
 </div>

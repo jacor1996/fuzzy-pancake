@@ -23,7 +23,7 @@ namespace WebApplication.Controllers
         }
 
         // GET: UserMeals
-        public ActionResult Index()
+        public ActionResult Indexx()
         {
             string userName = HttpContext.User.Identity.Name;
             var userMeals = repository.GetUserMeals(userName);
@@ -31,7 +31,7 @@ namespace WebApplication.Controllers
             return View(userMeals);
         }
 
-        public ActionResult Index2(string date)
+        public ActionResult Index(string date)
         {
             string userName = HttpContext.User.Identity.Name;
             //string date = "12/14/2017";
@@ -49,14 +49,17 @@ namespace WebApplication.Controllers
             if (date == null)
             {
                 model.UserMeals = data.ToList();
+                model.Activities = repository.GetUserActivities();
             }
             else
             {
                 DateTime dt = DateTime.Parse(date);
                 model.UserMeals = data.Where(x => x.Date == dt).ToList();
+                model.Activities = repository.GetUserActivities().Where(x => x.Date == dt);
             }
 
-            model.CaloryHelper = new CaloryHelper(model.UserMeals.ToList(), repository.FindUser(userName));
+
+            model.CaloryHelper = new CaloryHelper(model.UserMeals.ToList(), repository.FindUser(userName), model.Activities.ToList());
 
             var breakfast = model.UserMeals.Where(x => x.MealNumber == 0);
             var lunch = model.UserMeals.Where(x => x.MealNumber == 1);

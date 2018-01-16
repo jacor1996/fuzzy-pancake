@@ -1,44 +1,281 @@
-﻿@model IEnumerable<DAL.DataModel.User_Meals>
+﻿@using DAL.DataModel
+@model WebApplication.Models.UserMealsViewModel
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Meal.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MealNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Meal.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MealNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserMealId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserMealId })
-        </td>
-    </tr>
+@{
+    ViewBag.Title = "Index2";
 }
 
-</table>
+<h2>Daily nutritiens</h2>
+
+@using (Html.BeginForm("Index2"))
+{
+    @Html.EditorFor(model => model.Date, new {@class = "form"})
+    <input type="submit" value="Go" />
+}
+
+@{ Html.RenderPartial("CaloryView", Model.CaloryHelper);}
+
+<div class="jumbotron">
+    <p>Breakfast</p>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Meal number
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (User_Meals item in Model.Breakfast)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meal.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MealNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.UserMealId}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.UserMealId})
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div class="jumbotron">
+    <p>Lunch</p>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Meal number
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (User_Meals item in Model.Lunch)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meal.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MealNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserMealId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserMealId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div class="jumbotron">
+    <p>Dinner</p>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Meal number
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (User_Meals item in Model.Dinner)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meal.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MealNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserMealId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserMealId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div class="jumbotron">
+    <p>Snack</p>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Meal number
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (User_Meals item in Model.Snack)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meal.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MealNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserMealId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserMealId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div class="jumbotron">
+    <p>Supper</p>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Meal number
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (User_Meals item in Model.Supper)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meal.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MealNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserMealId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserMealId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div class="jumbotron">
+    <p>Activities</p>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Calories burned per hour
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Duration
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (UserActivity item in Model.Activities)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.CaloriesBurnedPerHour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    H: @Html.DisplayFor(modelItem => item.Hours)
+                    M: @Html.DisplayFor(modelItem => item.Minutes)
+                    S: @Html.DisplayFor(modelItem => item.Seconds)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 
 @{ Html.RenderAction("Get", "Meal");}
 

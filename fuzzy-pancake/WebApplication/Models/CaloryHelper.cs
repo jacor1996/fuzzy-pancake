@@ -10,6 +10,7 @@ namespace WebApplication.Models
     {
         private ICollection<User_Meals> Meals { get; set; }
         private User User { get; set; }
+        private ICollection<UserActivity> Activities { get; set; }
 
         public double Fats { get; set; } = 0;
         public double Carbohydrates { get; set; } = 0;
@@ -25,13 +26,26 @@ namespace WebApplication.Models
         public double ProteinsPercentage;
         public double CarbsPercentage;
 
-        public CaloryHelper(ICollection<User_Meals> data, User user)
+        public double CaloriesFromActivities;
+
+        //Basic metabolic rate
+        public double BMR;
+        //Thermal efect of food = 10% of BMR
+        public double TEF;
+        //NEAT -> Additional calories depending from body type
+        public double NEAT = 450;
+
+        public CaloryHelper(ICollection<User_Meals> data, User user, ICollection<UserActivity> activities=null)
         {
             Meals = data;
             User = user;
+            Activities = activities;
             ComputeDailyNutrients();
-            CaloriesLimit = ComputeBmr();
+            BMR = ComputeBmr();
+            TEF = ComputeTEF();
+            CaloriesLimit = BMR + TEF + NEAT;
             Bmi = ComputeBmi();
+            CaloriesFromActivities = ComputeCaloriesFromActivities();
         }
 
         private void ComputeDailyNutrients()
@@ -75,5 +89,34 @@ namespace WebApplication.Models
             return bmi;
         }
 
+        private double ComputeCaloriesFromActivities()
+        {
+            double burnedCalories = 0;
+            int s;
+            int m;
+            int h;
+
+            foreach (UserActivity userActivity in Activities)
+            {
+                s = userActivity.Seconds;
+                m = userActivity.Minutes;
+                h = userActivity.Hours;
+
+                burnedCalories += userActivity.Activity.CaloriesBurnedPerHour / 3600 * ConvertToSeconds(h, m, s);
+            }
+
+            return burnedCalories;
+        }
+
+        private int ConvertToSeconds(int h, int m, int s)
+        {
+            return s + (m * 60) + (h * 3600);
+        }
+
+        private double ComputeTEF()
+        {
+            double tef = BMR / 10;
+            return tef;
+        }
     }
 }

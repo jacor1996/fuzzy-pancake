@@ -25,6 +25,8 @@ namespace WebApplication.Models
         public virtual IEnumerable<User_Meals> Snack { get; set; }
         public virtual IEnumerable<User_Meals> Supper { get; set; }
 
+        public virtual IEnumerable<UserActivity> Activities { get; set; }
+
         public void SetMeals(IEnumerable<User_Meals> breakfast,
             IEnumerable<User_Meals> lunch,
             IEnumerable<User_Meals> dinner,

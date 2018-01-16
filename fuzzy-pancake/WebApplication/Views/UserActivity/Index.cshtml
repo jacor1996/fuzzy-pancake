@@ -3,6 +3,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -20,30 +21,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activity.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hours)
-            @Html.DisplayFor(modelItem => item.Minutes)
-            @Html.DisplayFor(modelItem => item.Seconds)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserActivityId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserActivityId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserActivityId })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activity.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hours)
+                @Html.DisplayFor(modelItem => item.Minutes)
+                @Html.DisplayFor(modelItem => item.Seconds)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.UserActivityId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.UserActivityId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.UserActivityId })
+            </td>
+        </tr>
+    }
+    
 </table>
 
 @{Html.RenderAction("Get", "Activity");}
