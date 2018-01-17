@@ -58,5 +58,7 @@ namespace DAL.Abstract
 
         UserActivity FindUserActivity(int id);
 
+        void RemoveUserActivity(int id);
+
     }
 }

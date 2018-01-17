@@ -91,6 +91,16 @@ namespace WebApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Delete(int id)
+        {
+            UserActivity activityToRemove = repository.FindUserActivity(id);
+            if (activityToRemove != null)
+            {
+                repository.RemoveUserActivity(id);
+            }
+            return RedirectToAction("Index");
+        }
+
         public bool IsValidUser(string userName)
         {
             User user = repository.FindUser(userName);

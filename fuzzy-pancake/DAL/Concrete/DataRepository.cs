@@ -203,7 +203,7 @@ namespace DAL.Concrete
 
         public UserActivity FindUserActivity(int id)
         {
-            var userActivity = _db.UserActivities.FirstOrDefault(x => x.ActivityId == id);
+            var userActivity = _db.UserActivities.FirstOrDefault(x => x.UserActivityId == id);
             return userActivity;
         }
 
@@ -230,6 +230,13 @@ namespace DAL.Concrete
                 
             }
 
+            _db.SaveChanges();
+        }
+
+        public void RemoveUserActivity(int id)
+        {
+            UserActivity activityToRemove = FindUserActivity(id);
+            _db.UserActivities.Remove(activityToRemove);
             _db.SaveChanges();
         }
     }
