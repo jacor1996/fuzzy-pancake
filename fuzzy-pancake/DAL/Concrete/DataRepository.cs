@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -226,6 +227,7 @@ namespace DAL.Concrete
                 dbEntry.Hours = userActivity.Hours;
                 dbEntry.Minutes = userActivity.Minutes;
                 dbEntry.Seconds = userActivity.Seconds;
+                
             }
 
             _db.SaveChanges();

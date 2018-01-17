@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<DAL.DataModel.UserActivity>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <table class="table">
     <tr>
         <th>
@@ -39,7 +35,6 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.UserActivityId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.UserActivityId }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.UserActivityId })
             </td>
         </tr>

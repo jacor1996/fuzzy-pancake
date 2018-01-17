@@ -58,6 +58,39 @@ namespace WebApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(int id)
+        {
+            UserActivity userActivity = repository.FindUserActivity(id);
+            if (userActivity == null)
+            {
+                return HttpNotFound("UserActivity does not exist.");
+            }
+            return View(userActivity);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserActivity userActivity, int id)
+        {
+
+            userActivity.ActivityId = id;
+            userActivity.Activity = repository.FindActivity(id);
+
+            string userName = HttpContext.User.Identity.Name;
+            if (IsValidUser(userName))
+            {
+                userActivity.User = repository.FindUser(userName);
+                userActivity.UserId = userActivity.User.UserId;
+            }
+
+            ModelState.Remove("ActivityId");
+            if (ModelState.IsValid)
+            {
+                repository.SaveUserActivity(userActivity);
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public bool IsValidUser(string userName)
         {
             User user = repository.FindUser(userName);
