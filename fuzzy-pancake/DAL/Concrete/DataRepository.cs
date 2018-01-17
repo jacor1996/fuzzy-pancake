@@ -158,6 +158,13 @@ namespace DAL.Concrete
             _db.SaveChanges();
         }
 
+        public void RemoveUserMeal(int id)
+        {
+            User_Meals userMealsToDelete = FindUserMeals(id);
+            _db.User_Meals.Remove(userMealsToDelete);
+            _db.SaveChanges();
+        }
+
         //Activities
         public IQueryable<Activity> GetActivities()
         {

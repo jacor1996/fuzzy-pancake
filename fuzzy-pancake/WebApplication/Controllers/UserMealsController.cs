@@ -118,6 +118,16 @@ namespace WebApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Delete(int id)
+        {
+            User_Meals userMeals = repository.FindUserMeals(id);
+            if (userMeals != null)
+            {
+                repository.RemoveUserMeal(id);
+            }
+            return RedirectToAction("Index");
+        }
+
         public static List<SelectListItem> CreateDropDownForMealNames()
         {
             List<SelectListItem> mealNames = new List<SelectListItem>();
