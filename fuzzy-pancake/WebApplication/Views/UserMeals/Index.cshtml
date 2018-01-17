@@ -2,7 +2,7 @@
 @model WebApplication.Models.UserMealsViewModel
 
 @{
-    ViewBag.Title = "Index2";
+    ViewBag.Title = "Index";
 }
 
 <h2>Daily nutritiens</h2>
@@ -10,7 +10,7 @@
 @using (Html.BeginForm("Index2"))
 {
     @Html.EditorFor(model => model.Date, new {@class = "form"})
-    <input type="submit" value="Go" />
+    <input class="btn" type="submit" value="Go" />
 }
 
 @{ Html.RenderPartial("CaloryView", Model.CaloryHelper);}
@@ -23,13 +23,10 @@
                 Name
             </th>
             <th>
-                Meal number
-            </th>
-            <th>
                 Amount
             </th>
             <th>
-                Date
+                Kilocalories
             </th>
             <th></th>
         </tr>
@@ -41,13 +38,12 @@
                     @Html.DisplayFor(modelItem => item.Meal.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MealNumber)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
+                    @{ double x = (double)item.Amount * item.Meal.Calories / 100;}
+                    @x.ToString("F")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new {id = item.UserMealId}) |
@@ -67,13 +63,10 @@
                 Name
             </th>
             <th>
-                Meal number
-            </th>
-            <th>
                 Amount
             </th>
             <th>
-                Date
+                Kilocalories
             </th>
             <th></th>
         </tr>
@@ -85,13 +78,11 @@
                     @Html.DisplayFor(modelItem => item.Meal.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MealNumber)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @{ double x = (double)item.Amount * item.Meal.Calories / 100;}
+                    @x.ToString("F")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.UserMealId }) |
@@ -111,13 +102,10 @@
                 Name
             </th>
             <th>
-                Meal number
-            </th>
-            <th>
                 Amount
             </th>
             <th>
-                Date
+                Kilocalories
             </th>
             <th></th>
         </tr>
@@ -129,13 +117,11 @@
                     @Html.DisplayFor(modelItem => item.Meal.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MealNumber)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @{ double x = (double)item.Amount * item.Meal.Calories / 100;}
+                    @x.ToString("F")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.UserMealId }) |
@@ -155,13 +141,10 @@
                 Name
             </th>
             <th>
-                Meal number
-            </th>
-            <th>
                 Amount
             </th>
             <th>
-                Date
+                Kilocalories
             </th>
             <th></th>
         </tr>
@@ -173,13 +156,11 @@
                     @Html.DisplayFor(modelItem => item.Meal.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MealNumber)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @{ double x = (double)item.Amount * item.Meal.Calories / 100;}
+                    @x.ToString("F")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.UserMealId }) |
@@ -199,13 +180,10 @@
                 Name
             </th>
             <th>
-                Meal number
-            </th>
-            <th>
                 Amount
             </th>
             <th>
-                Date
+                Kilocalories
             </th>
             <th></th>
         </tr>
@@ -217,13 +195,11 @@
                     @Html.DisplayFor(modelItem => item.Meal.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MealNumber)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @{ double x = (double)item.Amount * item.Meal.Calories / 100;}
+                    @x.ToString("F")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.UserMealId }) |

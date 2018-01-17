@@ -22,41 +22,28 @@ namespace WebApplication.Controllers
             this.model = new UserMealsViewModel();
         }
 
-        // GET: UserMeals
-        public ActionResult Indexx()
-        {
-            string userName = HttpContext.User.Identity.Name;
-            var userMeals = repository.GetUserMeals(userName);
-
-            return View(userMeals);
-        }
-
         public ActionResult Index(string date)
         {
             string userName = HttpContext.User.Identity.Name;
             //string date = "12/14/2017";
+            var data = repository.GetUserMeals(userName);
 
             if (String.IsNullOrEmpty(date))
             {
                 model.Date = DateTime.Now;
+                date = model.Date.ToShortDateString();
+                model.UserMeals = data.ToList();
+                model.Activities = repository.GetUserActivities();
             }
             else
             {
                 model.Date = DateTime.Parse(date);
             }
 
-            var data = repository.GetUserMeals(userName);
-            if (date == null)
-            {
-                model.UserMeals = data.ToList();
-                model.Activities = repository.GetUserActivities();
-            }
-            else
-            {
-                DateTime dt = DateTime.Parse(date);
-                model.UserMeals = data.Where(x => x.Date == dt).ToList();
-                model.Activities = repository.GetUserActivities().Where(x => x.Date == dt);
-            }
+           
+            DateTime dt = DateTime.Parse(date);
+            model.UserMeals = data.Where(x => x.Date == dt).ToList();
+            model.Activities = repository.GetUserActivities().Where(x => x.Date == dt);
 
 
             model.CaloryHelper = new CaloryHelper(model.UserMeals.ToList(), repository.FindUser(userName), model.Activities.ToList());

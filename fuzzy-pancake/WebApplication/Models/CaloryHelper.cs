@@ -18,6 +18,7 @@ namespace WebApplication.Models
         public double Calories { get; set; } = 0;
         public double CaloriesLimit { get; set; } = 0;
         public double Bmi { get; set; } = 0;
+        public string BmiFeedback;
 
         public double CaloriesFromFats;
         public double CaloriesFromCarbs;
@@ -45,6 +46,7 @@ namespace WebApplication.Models
             TEF = ComputeTEF();
             CaloriesLimit = BMR + TEF + NEAT;
             Bmi = ComputeBmi();
+            BmiFeedback = BmiMessage(Bmi);
             CaloriesFromActivities = ComputeCaloriesFromActivities();
         }
 
@@ -83,10 +85,32 @@ namespace WebApplication.Models
         private double ComputeBmi()
         {
             double mass = User.Weight;
-            double height = User.Height;
+            double height = User.Height /100; //Convert to meters
             double bmi = mass / (height * height);
 
             return bmi;
+        }
+
+        private string BmiMessage(double bmi)
+        {
+            string message = "";
+
+            if (bmi < 18.5)
+            {
+                message = "Your BMI is too low";
+            }
+
+            if (bmi >= 18.5 && bmi < 25)
+            {
+                message = "You have normal BMI";
+            }
+
+            if (bmi > 25)
+            {
+                message = "Your BMI is too high";
+            }
+
+            return message;
         }
 
         private double ComputeCaloriesFromActivities()
