@@ -41,7 +41,6 @@
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
                     @{ double x = (double)item.Amount * item.Meal.Calories / 100;}
                     @x.ToString("F")
                 </td>

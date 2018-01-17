@@ -25,9 +25,11 @@ namespace DAL.DataModel
         public int Age { get; set; }
 
         [Required(ErrorMessage = "Enter your weight in kilograms.")]
+        [Range(1,250)]
         public double Weight { get; set; }
 
-        [Required(ErrorMessage = "Enter your height in meters.")]
+        [Required(ErrorMessage = "Enter your height in centimeters.")]
+        [Range(100,220)]
         public double Height { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

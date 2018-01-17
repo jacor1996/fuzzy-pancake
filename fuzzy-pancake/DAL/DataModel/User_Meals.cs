@@ -18,6 +18,7 @@ namespace DAL.DataModel
         public int? MealId { get; set; }
 
         [Required(ErrorMessage = "Amount of food in grams.")]
+        [Range(0,2000)]
         public double? Amount { get; set; }
 
         [Column(TypeName = "date")]

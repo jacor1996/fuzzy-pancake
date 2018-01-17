@@ -25,7 +25,7 @@ namespace WebApplication.Controllers
         public ActionResult Index(string date)
         {
             string userName = HttpContext.User.Identity.Name;
-            //string date = "12/14/2017";
+            model.User = repository.FindUser(userName);
             var data = repository.GetUserMeals(userName);
 
             if (String.IsNullOrEmpty(date))
@@ -43,7 +43,7 @@ namespace WebApplication.Controllers
            
             DateTime dt = DateTime.Parse(date);
             model.UserMeals = data.Where(x => x.Date == dt).ToList();
-            model.Activities = repository.GetUserActivities().Where(x => x.Date == dt);
+            model.Activities = repository.GetUserActivities().Where(x => x.Date == dt && x.User.Name == model.User.Name);
 
 
             model.CaloryHelper = new CaloryHelper(model.UserMeals.ToList(), repository.FindUser(userName), model.Activities.ToList());

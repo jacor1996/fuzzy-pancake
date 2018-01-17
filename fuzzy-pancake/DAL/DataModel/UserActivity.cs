@@ -17,15 +17,16 @@ namespace DAL.DataModel
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Select date")]
         public DateTime Date { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Values from 0 to 12")]
         [Range(0,12)]
         public int Hours { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Values from 0 to 59")]
         [Range(0, 59)]
         public int Minutes { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Values from 0 to 59")]
         [Range(0, 59)]
         public int Seconds { get; set; }
 

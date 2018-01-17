@@ -225,11 +225,11 @@ namespace DAL.Concrete
 
             else //edit dbEntry
             {
-                dbEntry.UserId = userActivity.UserId;
-                dbEntry.User = userActivity.User;
-                dbEntry.Activity = userActivity.Activity;
-                dbEntry.ActivityId = userActivity.ActivityId;
-                dbEntry.UserActivityId = userActivity.UserActivityId;
+                //dbEntry.UserId = userActivity.UserId;
+                //dbEntry.User = userActivity.User;
+                //dbEntry.Activity = userActivity.Activity;
+                //dbEntry.ActivityId = userActivity.ActivityId;
+                //dbEntry.UserActivityId = userActivity.UserActivityId;
                 dbEntry.Date = userActivity.Date;
                 dbEntry.Hours = userActivity.Hours;
                 dbEntry.Minutes = userActivity.Minutes;

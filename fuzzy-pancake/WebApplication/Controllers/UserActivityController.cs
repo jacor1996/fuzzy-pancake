@@ -22,7 +22,8 @@ namespace WebApplication.Controllers
         public ActionResult Index(string date)
         {
             //DateTime dt = DateTime.Parse(date);
-            var userActivity = repository.GetUserActivities();
+            string userName = HttpContext.User.Identity.Name;
+            var userActivity = repository.GetUserActivities().Where(x=>x.User.Name == userName);
             return View(userActivity);
         }
 
