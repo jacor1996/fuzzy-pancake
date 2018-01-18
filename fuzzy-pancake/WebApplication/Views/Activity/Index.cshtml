@@ -1,32 +1,36 @@
 ﻿@model IEnumerable<DAL.DataModel.Activity>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CaloriesBurnedPerHour)
-        </th>
-        <th></th>
-    </tr>
+<div class="jumbotron">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaloriesBurnedPerHour)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CaloriesBurnedPerHour)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ActivityId })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CaloriesBurnedPerHour)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ActivityId })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+</div>

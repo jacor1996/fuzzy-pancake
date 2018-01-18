@@ -4,9 +4,13 @@
     ViewBag.Title = "User Panel";
 }
 
+<div class="jumbotron">
+
 <h2>User Panel</h2>
+
+<p>Hello @Model.Name!</p>
 
 @Html.ActionLink("Edit", "Edit", new { userName = HttpContext.Current.User.Identity.Name})
 @Html.ActionLink("Details", "Details", new { id=Model.UserId })
 
-   
+</div>
