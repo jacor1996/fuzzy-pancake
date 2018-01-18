@@ -72,6 +72,27 @@ namespace WebApplication.Controllers
             return View(userMeal);
         }
 
+        [HttpPost]
+        public ActionResult Edit(int id, int MealNames, User_Meals userMeal)
+        {
+            userMeal.MealId = id;
+            userMeal.Meal = repository.FindMeal(id);
+            userMeal.MealNumber = MealNames;
+            string user = HttpContext.User.Identity.Name;
+            if (IsValidUser(user))
+            {
+                userMeal.User = repository.FindUser(user);
+                userMeal.UserId = userMeal.User.UserId;
+            }
+
+            ModelState.Remove("MealId");
+            if (ModelState.IsValid)
+            {
+                repository.SaveUserMeal(userMeal);
+            }
+            return RedirectToAction("Index");
+        }
+
         public ActionResult AddMeal(int? id)
         {
             if (id == null)

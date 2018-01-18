@@ -145,12 +145,12 @@ namespace DAL.Concrete
 
             else //edit dbEntry
             {
-                dbEntry.User = userMeal.User;
-                dbEntry.Meal = userMeal.Meal;
-                dbEntry.MealId = userMeal.MealId;
+                //dbEntry.User = userMeal.User;
+                //dbEntry.Meal = userMeal.Meal;
+                //dbEntry.MealId = userMeal.MealId;
                 dbEntry.MealNumber = userMeal.MealNumber;
-                dbEntry.UserId = userMeal.UserId;
-                dbEntry.UserMealId = userMeal.UserMealId;
+                //dbEntry.UserId = userMeal.UserId;
+                //dbEntry.UserMealId = userMeal.UserMealId;
                 dbEntry.Amount = userMeal.Amount;
                 dbEntry.Date = userMeal.Date;
             }
