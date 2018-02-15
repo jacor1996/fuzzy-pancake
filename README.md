@@ -12,4 +12,4 @@ You can also add, edit or delete physical activities, which also will affect you
 - Entity Framework
 
 ## fuzzy-pancake in action
-https://youtu.be/Clt8Vl5Xn0Q
+https://youtu.be/Clt8Vl5Xn0Q (polish subtitles)
