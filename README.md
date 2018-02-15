@@ -7,7 +7,7 @@ compute your calories intake, amount of proteins, fats and carbohydrates.
 You can also add, edit or delete physical activities, which also will affect your calory intake.
 
 ## Used libraries
-- ASP .NET MVC 5
+- ASP.NET MVC 5
 - Ninject
 - Entity Framework
 
