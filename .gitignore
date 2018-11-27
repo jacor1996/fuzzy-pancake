@@ -73,3 +73,4 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+/fuzzy-pancake/.vs/fuzzy-pancake/v15/Server/sqlite3
